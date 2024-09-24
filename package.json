@@ -1,0 +1,106 @@
+{
+  "name": "alemon-desktop",
+  "version": "0.0.1",
+  "main": "dist-electron/main/index.js",
+  "author": "bietiaop",
+  "description": "Alemon Bot Framework Desktop.",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd ./out && pnpm i alemonjs@latest",
+    "dev-mac": "vite",
+    "dev": "chcp 65001 && vite",
+    "build": "tsc && vite build && npx electron .\\electron-main.js && electron-builder --config electron-builder.cjs",
+    "preview": "vite preview",
+    "pree2e": "vite build --mode=test",
+    "format": "prettier --write .",
+    "check-format": "git diff --exit-code",
+    "e2e": "playwright test",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bytenode": "^1.5.6",
+    "electron-log": "^5.1.2",
+    "electron-updater": "^6.1.8",
+    "systeminformation": "^5.22.6"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@playwright/test": "^1.42.1",
+    "@reduxjs/toolkit": "^2.2.2",
+    "@types/cacheable-request": "^8.3.2",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "20.11.30",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "@types/validator": "^13.11.9",
+    "@vitejs/plugin-react": "^4.2.1",
+    "alemonjs": "2.0.0-rc.6",
+    "antd": "^5.15.3",
+    "autoprefixer": "^10.4.19",
+    "clsx": "^2.1.0",
+    "echarts": "^5.5.0",
+    "electron": "^29.1.5",
+    "electron-builder": "^24.13.3",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.2",
+    "lodash": "^4.17.21",
+    "postcss": "^8.4.38",
+    "preline": "^2.4.1",
+    "postcss-import": "^16.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "^9.1.0",
+    "react-router-dom": "^6.22.3",
+    "redux-persist": "^6.0.0",
+    "rimraf": "^5.0.5",
+    "sass": "^1.72.0",
+    "tailwindcss": "^3.4.1",
+    "terser": "^5.29.2",
+    "tree-kill": "^1.2.2",
+    "typescript": "^5.4.3",
+    "validator": "^13.11.0",
+    "vite": "^5.2.4",
+    "vite-plugin-electron": "^0.28.4",
+    "vite-plugin-electron-renderer": "^0.14.5"
+  },
+  "packageManager": "pnpm@8.15.4",
+  "debug": {
+    "env": {
+      "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"
+    }
+  },
+  "contributors": [
+    {
+      "name": "别调P",
+      "url": "https://github.com/bietiaop"
+    },
+    {
+      "name": "空巷一人",
+      "url": "https://github.com/kongxiangyiren"
+    },
+    {
+      "name": "柠檬冲水",
+      "url": "https://github.com/ningmengchongshui"
+    }
+  ],
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "keywords": [
+    "alemonjs"
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "tsc --noEmit"
+    ],
+    "electron/**/*.{js,jsx,ts,tsx}": [
+      "tsc --noEmit"
+    ],
+    "alemon/**/*.{js,jsx,ts,tsx}": [
+      "tsc --noEmit"
+    ]
+  }
+}

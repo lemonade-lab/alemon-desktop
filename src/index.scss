@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+//
+@import '@/fonts.scss';
+@import '@/assets/fonts/iconfont/iconfont.css';
+//
+:root {
+  --app-bar-height: 33px;
+  --font-family: 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --code-font: 'Fira Code', 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+}
+/**
+* 覆盖 antd 样式
+*/
+.ant-modal-mask {
+  position: fixed !important;
+  inset: 0 !important;
+  top: var(--app-bar-height) !important;
+  border-top-right-radius: 0.75rem;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 7rem;
+    top: calc(0px - var(--app-bar-height));
+    height: var(--app-bar-height);
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-top-right-radius: 0.75rem;
+  }
+}
+.ant-modal-wrap {
+  margin-top: calc(0px - var(--app-bar-height));
+}
+:root.dark {
+  /** var */
+  --bg-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --description-text-color: rgba(255, 255, 255, 0.6);
+  --content-bg-color: #353535;
+  --area-bg-color: #2e2e2e;
+  --area-bg-color-deep: #3d3d3d;
+  --area-bg-color-light: rgb(26, 26, 26);
+  --button-bg-color: #1a1a1a;
+  --button-bg-color-warn: #d73030;
+  --button-text-color-warn: #ffffff;
+  --button-border-color: #3d3d3d;
+  --input-bg-color: #2e2e2e;
+  --input-border-color: #3d3d3d;
+  --input-border-color-hover: #8e8e8e;
+  --input-border-color-focus: #b9b9b9;
+  --input-border-color-error: #ff4d4f;
+  --input-border-color-disabled: #3d3d3d;
+  --input-text-color: rgba(255, 255, 255, 0.87);
+  --input-text-color-disabled: rgba(255, 255, 255, 0.3);
+  --input-placeholder-color: rgba(255, 255, 255, 0.3);
+  --input-placeholder-color-disabled: rgba(255, 255, 255, 0.2);
+  --select-text-bg-color: rgba(23, 23, 23, 0.7);
+}
+
+// Light theme
+:root.light {
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --description-text-color: rgba(0, 0, 0, 0.6);
+  --content-bg-color: #ececec;
+  --area-bg-color: #f3f4f6;
+  --area-bg-color-deep: #ffffff;
+  --area-bg-color-light: #ebebeb;
+  --button-bg-color: #f9f9f9;
+  --button-bg-color-warn: rgb(241, 37, 37);
+  --button-text-color-warn: #ffffff;
+  --button-border-color: #d9d9d9;
+  --input-bg-color: #ffffff;
+  --input-border-color: #d9d9d9;
+  --input-border-color-hover: #40a9ff;
+  --input-border-color-focus: #40a9ff;
+  --input-border-color-error: #ff4d4f;
+  --input-border-color-disabled: #d9d9d9;
+  --input-text-color: rgba(0, 0, 0, 0.65);
+  --input-text-color-disabled: rgba(0, 0, 0, 0.25);
+  --input-placeholder-color: rgba(0, 0, 0, 0.25);
+  --input-placeholder-color-disabled: rgba(0, 0, 0, 0.25);
+  --select-text-bg-color: rgba(218, 218, 218, 0.7);
+}
+
+:root {
+  /** prop */
+  font-family: var(--font-family);
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+
+  ::selection {
+    background-color: var(--select-text-bg-color);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  // 继承父类字体
+  font-family: inherit !important;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg-color);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(139, 139, 139, 0.8);
+    border-radius: 4px;
+    &:hover {
+      background-color: rgba(113, 113, 113, 0.8);
+    }
+    &:active {
+      background-color: rgba(113, 113, 113);
+    }
+  }
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-family) !important;
+}
+
+h1 {
+  font-size: 2.2em;
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  user-select: none;
+}
+
+@layer components {
+  .bg-page {
+    background-color: var(--bg-color);
+  }
+  .bg-content {
+    background-color: var(--content-bg-color);
+  }
+  .bg-button {
+    background-color: var(--button-bg-color);
+  }
+  .bg-button-warn {
+    background-color: var(--button-bg-color-warn);
+  }
+  .bg-input {
+    background-color: var(--input-bg-color);
+  }
+  .color-button-warn-text {
+    color: var(--button-text-color-warn);
+  }
+  .border-button {
+    border-color: var(--button-border-color);
+  }
+  .border-input {
+    border-color: var(--input-border-color);
+    &:hover {
+      border-color: var(--input-border-color-hover);
+    }
+    &:focus {
+      border-color: var(--input-border-color-focus);
+    }
+    &:disabled {
+      border-color: var(--input-border-color-disabled);
+    }
+  }
+  .border-input-error {
+    border-color: var(--input-border-color-error);
+  }
+  .color-input-text {
+    color: var(--input-text-color);
+    &::placeholder {
+      color: var(--input-placeholder-color);
+    }
+    &:disabled {
+      color: var(--input-text-color-disabled);
+      &::placeholder {
+        color: var(--input-placeholder-color-disabled);
+      }
+    }
+  }
+  .color-primary {
+    color: var(--text-color);
+  }
+  .color-description {
+    color: var(--description-text-color);
+  }
+  .h-app-bar {
+    height: var(--app-bar-height);
+  }
+  .area {
+    background-color: var(--area-bg-color);
+  }
+  .area-light {
+    background-color: var(--area-bg-color-light);
+  }
+  .area-deep {
+    background-color: var(--area-bg-color-deep);
+  }
+  .description-text {
+    color: var(--description-text-color);
+  }
+
+  .hide-scroll-bar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .bg-page {
+    background-color: var(--bg-color);
+  }
+
+  .bg-content {
+    background-color: var(--content-bg-color);
+  }
+
+  .no-drag {
+    -webkit-user-drag: none;
+    * {
+      -webkit-user-drag: none;
+    }
+  }
+
+  .code-font {
+    font-family: var(--code-font) !important;
+  }
+
+  .app-drag {
+    -webkit-app-region: drag !important;
+  }
+
+  .app-no-drag {
+    -webkit-app-region: no-drag !important;
+  }
+
+  .app-bar-height {
+    height: var(--app-bar-height);
+  }
+
+  .app-bar-padding {
+    padding-top: var(--app-bar-height);
+  }
+
+  .drag-none {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+.shadow-centent {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
