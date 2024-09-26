@@ -1,20 +1,19 @@
-import Header from './Header'
-import Sidebar from './Sidebar'
-import Breadcrumb from './Breadcrumb'
+import Header from '@/pages/Header'
 import { useState } from 'react'
-import Table from './Table'
-import { SelectType } from './types'
-import Bot from './Bot'
+import { SelectType } from '@/pages/home/types'
 export default () => {
   const [select, setSelect] = useState<SelectType>('default')
   return (
     <>
       <Header></Header>
-      <Breadcrumb></Breadcrumb>
-      <Sidebar onClickMenu={val => setSelect(val)}></Sidebar>
-      <main className="w-full h-full lg:ps-64">
-        {select == 'user.manage' && <Table />}
-        {select == 'default' && <Bot />}
+      {
+        // 左右布局。
+      }
+      <main className="w-full h-full flex">
+        <section className="w-16 bg-blue">
+          <div className="h-full">xx</div>
+        </section>
+        <section className="flex-1">xx</section>
       </main>
     </>
   )

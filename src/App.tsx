@@ -4,7 +4,7 @@ import Router from '@/routes/index'
 import { useIPClistener } from '@/hooks/ipc'
 import useApp from '@/hooks/app'
 import useSettings from '@/hooks/settings'
-import useBots from './hooks/bots'
+import useBots from '@/hooks/bots'
 import Loading from '@/pages/Loading'
 export default () => {
   const ipc = useIPClistener()

@@ -3,6 +3,7 @@ import { app, BrowserWindow, shell, ipcMain, screen, type Tray } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 import urlHandler from 'url'
+// 定义进程变量
 process.env.DIST_ELECTRON = join(__dirname, '../')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
 process.env.VITE_PUBLIC = process.env.VITE_DEV_SERVER_URL
@@ -21,7 +22,7 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 // Get the screen size
-function getScreenSize(): Electron.Size {
+const getScreenSize = (): Electron.Size => {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
   return { width, height }
 }
@@ -34,12 +35,16 @@ function getScreenSize(): Electron.Size {
 let win: BrowserWindow | null = null
 let loginWin: BrowserWindow | null = null
 let appTray: Tray | null
+
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
-function createWindow() {
+/**
+ * main窗口
+ */
+const createWindow = () => {
   // Get the screen size
   const screenSize = getScreenSize()
   // Create the browser window.
@@ -78,7 +83,11 @@ function createWindow() {
   })
 }
 
-function createLoginWindow() {
+/**
+ * login窗口
+ * @returns
+ */
+const createLoginWindow = () => {
   if (!win) return
   // Get the screen size
   const screenSize = getScreenSize()

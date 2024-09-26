@@ -1,3 +1,3 @@
 export default function Header() {
-  return <div className="h-7 bg-black"></div>
+  return <div id="drag-area" className="h-4 bg-black "></div>
 }
