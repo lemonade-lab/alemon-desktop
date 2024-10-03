@@ -42,7 +42,7 @@
     "clsx": "^2.1.0",
     "echarts": "^5.5.0",
     "electron": "^29.1.5",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "^25.1.7",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.2",
     "lodash": "^4.17.21",
