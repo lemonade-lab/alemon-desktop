@@ -6,6 +6,6 @@
     "art-template": "^4.13.2"
   },
   "devDependencies": {
-    "alemonjs": "2.0.0-rc.6"
+    "alemonjs": "2.0.0-rc.41"
   }
 }
