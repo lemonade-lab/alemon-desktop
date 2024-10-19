@@ -1,33 +1,26 @@
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Home from '@src/pages/home/App'
 import About from '@src/pages/about/App'
-import { ChatbotIcon, SettingIcon } from '@src/pages/Icon'
-
-const Apps = [
-  {
-    Icon: <ChatbotIcon />,
-    onclick: () => {
-      console.log('')
-    }
-  }
-  // {
-  //   Icion: <Setting />,
-  //   onclick: () => {
-  //     console.log('')
-  //   }
-  // }
-]
+import Chat from '@src/pages/chat/App'
+import { AppsIcon, ChatbotIcon, SettingIcon } from '@src/pages/Icon'
 
 export default () => {
-  const navigate = useNavigate() // 获取 navigate 函数
+  const navigate = useNavigate()
+  const Apps = [
+    {
+      Icon: <AppsIcon />,
+      onclick: () => navigate('/')
+    },
+    {
+      Icon: <ChatbotIcon />,
+      onclick: () => navigate('/chat')
+    }
+  ]
   return (
     <main className="flex flex-row h-full">
       <section className="flex flex-col w-[4.3rem] bg-slate-200 ">
         <section className="h-6" />
-        <section
-          className="flex justify-center  py-1 relative cursor-pointer "
-          onClick={() => navigate('/')}
-        >
+        <section className="flex justify-center py-1 relative cursor-pointer ">
           <img
             className="size-[3rem] rounded-full"
             src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
@@ -57,6 +50,7 @@ export default () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </article>
     </main>

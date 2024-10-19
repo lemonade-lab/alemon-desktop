@@ -13,7 +13,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden; // 禁用滚动
+  // overflow: hidden; // 禁用滚动
   font-family: var(--font-family) !important;
 }
 
@@ -32,19 +32,24 @@ body {
 * {
   font-family: inherit !important;
   -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
+
   &::-webkit-scrollbar-track {
     background: var(--bg-color);
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: rgba(139, 139, 139, 0.8);
     border-radius: 4px;
+
     &:hover {
       background-color: rgba(113, 113, 113, 0.8);
     }
+
     &:active {
       background-color: rgba(113, 113, 113);
     }
@@ -72,21 +77,24 @@ img {
 
 .webkit {
   &::-webkit-scrollbar {
-    width: 1rem;
-    height: 1rem;
+    width: 0.4rem;
     background-color: transparent;
   }
+
   &::-webkit-scrollbar-track {
     background: var(--bg-color);
   }
+
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(139, 139, 139, 0.8);
+    background-color: rgba(95, 200, 248, 0.6);
     border-radius: 4px;
+
     &:hover {
-      background-color: rgba(113, 113, 113, 0.8);
+      background-color: rgba(95, 200, 248, 0.8);
     }
+
     &:active {
-      background-color: rgba(113, 113, 113);
+      background-color: rgba(95, 200, 248, 1);
     }
   }
 }

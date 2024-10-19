@@ -74,16 +74,5 @@
     "env": {
       "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"
     }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "tsc --noEmit"
-    ],
-    "electron/**/*.{js,jsx,ts,tsx}": [
-      "tsc --noEmit"
-    ],
-    "alemon/**/*.{js,jsx,ts,tsx}": [
-      "tsc --noEmit"
-    ]
   }
 }
