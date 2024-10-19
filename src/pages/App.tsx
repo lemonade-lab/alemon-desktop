@@ -1,6 +1,23 @@
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Home from '@src/pages/home/App'
 import About from '@src/pages/about/App'
+import { ChatbotIcon, SettingIcon } from '@src/pages/Icon'
+
+const Apps = [
+  {
+    Icon: <ChatbotIcon />,
+    onclick: () => {
+      console.log('')
+    }
+  }
+  // {
+  //   Icion: <Setting />,
+  //   onclick: () => {
+  //     console.log('')
+  //   }
+  // }
+]
+
 export default () => {
   const navigate = useNavigate() // 获取 navigate 函数
   return (
@@ -8,10 +25,8 @@ export default () => {
       <section className="flex flex-col w-[4.3rem] bg-slate-200 ">
         <section className="h-6" />
         <section
-          className="flex justify-center py-1 relative cursor-pointer "
-          onClick={() => {
-            navigate('/')
-          }}
+          className="flex justify-center  py-1 relative cursor-pointer "
+          onClick={() => navigate('/')}
         >
           <img
             className="size-[3rem] rounded-full"
@@ -20,18 +35,22 @@ export default () => {
           />
         </section>
         <section className="flex-1 flex items-center flex-col">
-          {[1, 2, 3, 4].map(item => (
-            <div className=" rounded-md size-10 bg-black my-2"></div>
+          {Apps.map(Item => (
+            <div
+              className="my-2 cursor-pointer shadow-centent bg-slate-100 p-1 rounded-md"
+              onClick={Item.onclick}
+            >
+              {Item.Icon}
+            </div>
           ))}
         </section>
-        <section className="py-3  flex items-center flex-col ">
+        <section className="py-2 flex items-center flex-col ">
           <div
-            className=" rounded-md size-10 bg-black my-2 text-slate-700 cursor-pointer"
-            onClick={() => {
-              // 如何切换path
-              navigate('/about')
-            }}
-          ></div>
+            className=" rounded-md size-10 my-2 cursor-pointer"
+            onClick={() => navigate('/about')}
+          >
+            <SettingIcon />
+          </div>
         </section>
       </section>
       <article className="flex-1">

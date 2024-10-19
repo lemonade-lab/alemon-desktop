@@ -1,10 +1,7 @@
 {
-  "name": "out",
+  "name": "alemonb",
   "version": "1.0.0",
   "license": "MIT",
-  "dependencies": {
-    "art-template": "^4.13.2"
-  },
   "devDependencies": {
     "alemonjs": "^2.0.0-rc.42"
   }
