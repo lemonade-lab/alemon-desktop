@@ -1,7 +1,9 @@
 import { RouteObject, Navigate } from 'react-router-dom'
-import Home from '@/pages/Home/App'
-import Header from '@/pages/Header'
-import NotFound from '@/pages/NotFound'
+import Home from '@src/pages/Home/App'
+// Header
+import Header from '@src/pages/Header'
+import NotFound from '@src/pages/NotFound'
+// Outlet
 import { Outlet } from 'react-router-dom'
 export default [
   {

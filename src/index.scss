@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 // font
-@import '@/fonts.scss';
-@import '@/assets/fonts/iconfont/iconfont.css';
+@import '@src/fonts.scss';
+@import '@src/assets/fonts/iconfont/iconfont.css';
 
 // root
 :root {
+  // bar 的高度
   --app-bar-height: 33px;
   --font-family: 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --code-font: 'Fira Code', 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial,
@@ -39,10 +40,9 @@ h6 {
   user-select: none;
 }
 
-// 消除滚动条
+// 消除所有滚动条
 * {
   box-sizing: border-box;
-  // 继承父类字体
   font-family: inherit !important;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
@@ -65,6 +65,7 @@ h6 {
   }
 }
 
+// 阴影
 .shadow-centent {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -76,6 +77,6 @@ h6 {
 }
 
 img {
-  /* 禁用所有鼠标事件 */
+  // 禁用图片的所有鼠标事件
   pointer-events: none;
 }

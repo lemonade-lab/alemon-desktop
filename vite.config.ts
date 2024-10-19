@@ -1,9 +1,10 @@
+import { join } from 'node:path'
 import { rmSync } from 'node:fs'
-import path from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
+// pkg is the package.json of the project
 import pkg from './package.json'
 
 // https://vitejs.dev/config/
@@ -15,7 +16,7 @@ export default defineConfig(({ command }) => {
   return {
     resolve: {
       alias: {
-        '@': path.join(__dirname, 'src')
+        '@src': join(__dirname, 'src')
       }
     },
     plugins: [
