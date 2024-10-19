@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { HashRouter } from 'react-router-dom'
-import Router from '@src/routes/index'
+import ChatBox from '@src/pages/App'
 import Loading from '@src/pages/Loading'
 export default () => {
   return (
@@ -12,7 +12,7 @@ export default () => {
           </div>
         }
       >
-        <Router />
+        <ChatBox />
       </Suspense>
     </HashRouter>
   )

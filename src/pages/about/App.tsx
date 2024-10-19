@@ -3,7 +3,7 @@ export default () => {
     <>
       <section className="h-6 drag-area bg-slate-300" />
       <section className="bg-white h-full  px-6">
-        <div>主页内容</div>
+        <div>关于</div>
       </section>
     </>
   )

@@ -3,52 +3,38 @@
 @tailwind utilities;
 
 // font
-@import '@src/fonts.scss';
+@import '@src/assets/css/fonts.scss';
 @import '@src/assets/fonts/iconfont/iconfont.css';
-
-// root
-:root {
-  // bar 的高度
-  --app-bar-height: 33px;
-  --font-family: 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --code-font: 'Fira Code', 'Roboto', 'Noto Sans SC', Inter, system-ui, Avenir, Helvetica, Arial,
-    sans-serif;
-}
+@import '@src/assets/css/root.scss';
 
 html,
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; // 禁用滚动
   font-family: var(--font-family) !important;
 }
 
-// 调整h1
-h1 {
-  font-size: 2.2em;
-  line-height: 1.1;
+#root {
+  height: 100%;
+  width: 100%;
 }
 
-// 消除 select
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  user-select: none;
+// 可拖拽区域
+.drag-area {
+  -webkit-app-region: drag;
+  cursor: move;
 }
 
 // 消除所有滚动条
 * {
-  box-sizing: border-box;
   font-family: inherit !important;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: transparent;
+    width: 0;
+    height: 0;
   }
   &::-webkit-scrollbar-track {
     background: var(--bg-color);
@@ -65,18 +51,42 @@ h6 {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  user-select: none;
+}
+
 // 阴影
 .shadow-centent {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-// 可拖拽区域
-#drag-area {
-  -webkit-app-region: drag;
-  cursor: move;
+// 禁用图片的所有鼠标事件
+img {
+  pointer-events: none;
 }
 
-img {
-  // 禁用图片的所有鼠标事件
-  pointer-events: none;
+.webkit {
+  &::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg-color);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(139, 139, 139, 0.8);
+    border-radius: 4px;
+    &:hover {
+      background-color: rgba(113, 113, 113, 0.8);
+    }
+    &:active {
+      background-color: rgba(113, 113, 113);
+    }
+  }
 }

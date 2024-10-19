@@ -1,4 +1,3 @@
-import './copy-temp'
 import { app } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'

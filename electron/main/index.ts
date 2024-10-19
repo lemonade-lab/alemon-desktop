@@ -1,4 +1,3 @@
-import './copy-temp'
 import './env'
 import { app, BrowserWindow, shell, ipcMain, screen, type Tray } from 'electron'
 import { join } from 'node:path'
@@ -10,37 +9,34 @@ const getScreenSize = (): Electron.Size => {
   return { width, height }
 }
 
-// Remove electron security warnings
-// This warning only shows in development mode
-// Read more on https://www.electronjs.org/docs/latest/tutorial/security
-// process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
-
 let win: BrowserWindow | null = null
 let loginWin: BrowserWindow | null = null
 let appTray: Tray | null
 
-// Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
 /**
- * main窗口
+ * 创建窗口
  */
 const createWindow = () => {
-  // Get the screen size
+  // 获取屏幕尺寸
   const screenSize = getScreenSize()
-  // Create the browser window.
+  // 创建浏览器窗口。
   win = new BrowserWindow({
     width: parseInt((screenSize.width * 0.673).toFixed(0)),
     height: parseInt((screenSize.height * 0.673).toFixed(0)),
     minWidth: parseInt((screenSize.width * 0.5).toFixed(0)),
     minHeight: parseInt((screenSize.height * 0.6).toFixed(0)),
+    // 默认窗口标题。默认为"Electron"。
+    // 如果 HTML 标签<title>是 在加载的 HTML 文件中定义loadURL()，该属性将被忽略。
     title: 'AlemonJS',
+    // 窗口标题栏的样式。默认为default。可能的值为：
     titleBarStyle: 'hidden',
-    // titleBarOverlay: getTitleBarOverLayStyle(),
+    // 窗口标题栏的颜色。默认为#000000。
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
-    // backgroundColor: getTitleBarOverLayStyle().color,
+    // 是否可以最小化窗口。默认为true。
     webPreferences: {
       preload,
       nodeIntegration: true,
@@ -48,13 +44,13 @@ const createWindow = () => {
       devTools: !app.isPackaged
     }
   })
-  // Hide the menu bar
+  // 隐藏菜单栏
   win.setMenuBarVisibility(false)
-  // Load the HTML(URL when dev) of the app.
+  // 加载应用的HTML(URL when dev)。
   if (url) {
     win.loadURL(url)
-    // Open devTool if the app is not packaged
-    // win.webContents.openDevTools();
+    // 如果应用没有打包，打开开发者工具
+    win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }
@@ -67,7 +63,7 @@ const createWindow = () => {
 }
 
 /**
- * login窗口
+ *
  * @returns
  */
 const createLoginWindow = () => {

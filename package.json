@@ -19,14 +19,14 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-    "bytenode": "^1.5.6",
     "electron-log": "^5.1.2",
     "electron-updater": "^6.1.8",
     "systeminformation": "^5.22.6"
   },
   "devDependencies": {
+    "bytenode": "^1.5.6",
     "@ant-design/icons": "^5.2.6",
+    "axios": "^1.6.8",
     "@playwright/test": "^1.42.1",
     "@reduxjs/toolkit": "^2.2.2",
     "@types/cacheable-request": "^8.3.2",
@@ -73,26 +73,6 @@
       "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"
     }
   },
-  "contributors": [
-    {
-      "name": "别调P",
-      "url": "https://github.com/bietiaop"
-    },
-    {
-      "name": "空巷一人",
-      "url": "https://github.com/kongxiangyiren"
-    },
-    {
-      "name": "柠檬冲水",
-      "url": "https://github.com/ningmengchongshui"
-    }
-  ],
-  "engines": {
-    "node": "^14.18.0 || >=16.0.0"
-  },
-  "keywords": [
-    "alemonjs"
-  ],
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "tsc --noEmit"
