@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MenuMoreIcon, SendIcon } from '../Icon'
+import moment from 'moment'
+
 export default () => {
   const [status, setStatus] = useState<'open' | 'close'>('close')
   const [socket, setSocket] = useState<WebSocket | null>(null)
@@ -7,6 +9,7 @@ export default () => {
     {
       bot: boolean
       value: string
+      createAt: string
     }[]
   >([])
   const [value, setValue] = useState('')
@@ -40,7 +43,8 @@ export default () => {
           prevMessages.concat([
             {
               bot: true,
-              value: txt.d
+              value: txt.d,
+              createAt: moment().format('YYYY-MM-DD HH:mm:ss')
             }
           ])
         )
@@ -79,7 +83,8 @@ export default () => {
         prevMessages.concat([
           {
             bot: false,
-            value: msg
+            value: msg,
+            createAt: moment().format('YYYY-MM-DD HH:mm:ss')
           }
         ])
       )
@@ -118,14 +123,17 @@ export default () => {
         <>
           <section className="flex-1 px-3 py-2 overflow-y-auto flex gap-1 flex-col webkit bg-slate-50 bg-opacity-50">
             {message.map((item, index) => (
-              <div key={index} className=" flex  gap-4 bg-opacity-70 mr-auto ">
+              <div key={index} className="flex  gap-4 bg-opacity-70 mr-auto ">
                 <img
                   className="size-[3rem] rounded-full"
                   src={item.bot ? BOT_URI : USER_URI}
                   // src=""
                   alt="Avatar"
                 />
-                <div className="rounded-md p-1 bg-slate-200">{item.value}</div>
+                <div className="rounded-md relative p-1 m-auto bg-slate-200">
+                  <span>{item.value}</span>
+                  <span className="absolute text-[0.5rem] whitespace-nowrap">{item.createAt}</span>
+                </div>
               </div>
             ))}
           </section>
