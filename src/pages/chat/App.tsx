@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
-import { SendIcon } from '../Icon'
+import { MenuMoreIcon, SendIcon } from '../Icon'
 export default () => {
   const [message, setMessage] = useState<string[]>(['xxxx', '3233'])
   const [value, setValue] = useState('')
   useEffect(() => {
     setValue('')
-    // 滑动滚动条到下面
   }, [message])
   return (
     <section className="bg-white h-full flex flex-col">
-      <section className="h-6 drag-area bg-slate-300 bg-opacity-80" />
+      <section className="h-6 flex  bg-slate-300 bg-opacity-80">
+        <div className="flex-1 drag-area"></div>
+        <div className="px-2  cursor-pointer">
+          <MenuMoreIcon />
+        </div>
+      </section>
       <section className="flex-1 px-3 py-2 overflow-y-auto flex gap-1 flex-col webkit bg-slate-50 bg-opacity-50">
         {message.map((item, index) => (
           <div key={index} className=" bg-slate-200 bg-opacity-70 mr-auto p-1 rounded-md">
@@ -25,14 +29,14 @@ export default () => {
           onChange={e => setValue(e.target.value)}
           placeholder="输入内容..."
           onKeyDown={event => {
-            if (event.key === 'Enter') {
-              setMessage(message.concat([value]))
-            }
+            event.key === 'Enter' && value != '' && setMessage(message.concat([value]))
           }}
         />
         <div
           className="shadow-centent mx-2 cursor-pointer px-2 rounded-md  border-0"
-          onClick={() => setMessage(message.concat([value]))}
+          onClick={() => {
+            value != '' && setMessage(message.concat([value]))
+          }}
         >
           <SendIcon />
         </div>
