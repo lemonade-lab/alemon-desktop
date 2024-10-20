@@ -28,41 +28,14 @@ body {
   cursor: move;
 }
 
-// 消除所有滚动条
 * {
-  font-family: inherit !important;
-  -ms-overflow-style: none;
-
+  // 消除所有可文本可选
+  user-select: none;
+  // 消除所有滚动条
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-
-  &::-webkit-scrollbar-track {
-    background: var(--bg-color);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(139, 139, 139, 0.8);
-    border-radius: 4px;
-
-    &:hover {
-      background-color: rgba(113, 113, 113, 0.8);
-    }
-
-    &:active {
-      background-color: rgba(113, 113, 113);
-    }
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  user-select: none;
 }
 
 // 阴影
@@ -71,7 +44,7 @@ h6 {
 }
 
 // 禁用图片的所有鼠标事件
-img {
+.pointer-events-none {
   pointer-events: none;
 }
 
@@ -96,5 +69,12 @@ img {
     &:active {
       background-color: rgba(95, 200, 248, 1);
     }
+  }
+}
+
+.webkit-none {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 }

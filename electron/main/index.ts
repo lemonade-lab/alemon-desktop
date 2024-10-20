@@ -44,8 +44,10 @@ const createWindow = () => {
       devTools: !app.isPackaged
     }
   })
+
   // 隐藏菜单栏
   win.setMenuBarVisibility(false)
+
   // 加载应用的HTML(URL when dev)。
   if (url) {
     win.loadURL(url)
@@ -55,11 +57,13 @@ const createWindow = () => {
     win.loadFile(indexHtml)
   }
 
-  // Make all links open with the browser, not with the application
+  // 让所有链接都通过浏览器打开，而不是通过应用程序打开
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
   })
+
+  //
 }
 
 /**
