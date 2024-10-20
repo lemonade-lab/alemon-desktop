@@ -10,3 +10,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <APP />
   </Provider>
 )
+
+declare global {
+  interface Window {
+    app: {
+      getAppPath: () => Promise<string>
+      isTemplateExists: () => Promise<{
+        exists: boolean
+      }>
+      yarnInstall: () => Promise<void>
+      yarnAdd: (name: string) => Promise<void>
+      botRun: () => Promise<void>
+      botClose: () => Promise<void>
+    }
+  }
+}

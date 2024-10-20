@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     {
       name: 'alemon',
-      useApp: () => process.argv.includes('--alemonjs') && useAlemonJS()
+      useApp: () => {
+        process.argv.includes('--alemonjs') && useAlemonJS('src/index.ts')
+      }
     }
   ],
   build: {

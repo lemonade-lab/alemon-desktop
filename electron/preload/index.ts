@@ -3,5 +3,7 @@ contextBridge.exposeInMainWorld('app', {
   getAppPath: () => ipcRenderer.invoke('get-app-path'),
   isTemplateExists: () => ipcRenderer.invoke('get-template-exists'),
   yarnInstall: () => ipcRenderer.invoke('yarn-install'),
-  yarnAdd: (data: string) => ipcRenderer.invoke('yarn-add', data)
+  yarnAdd: (data: string) => ipcRenderer.invoke('yarn-add', data),
+  botRun: () => ipcRenderer.invoke('bot-run'),
+  borClose: () => ipcRenderer.invoke('bot-close')
 })

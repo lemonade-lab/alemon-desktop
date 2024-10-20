@@ -4,6 +4,7 @@ import { templatePath } from './static'
 import { join } from 'path'
 import { existsSync } from 'fs'
 import { yarnAdd, yarnInstall } from './yarn'
+import { botClose, botRun } from './bot'
 /**
  * 全局可用的
  * 通讯信息
@@ -31,4 +32,12 @@ ipcMain.handle('yarn-install', () => {
 ipcMain.handle('yarn-add', () => {
   // yarnAdd()
   return
+})
+
+ipcMain.handle('bot-run', () => {
+  botRun()
+})
+
+ipcMain.handle('bot-close', () => {
+  botClose()
 })

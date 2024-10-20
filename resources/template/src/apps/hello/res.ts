@@ -7,5 +7,5 @@ export default OnResponse(
     Send(Text('hello Word'))
   },
   'message.create',
-  /^hello$/
+  /^(#|\/)?hello$/
 )

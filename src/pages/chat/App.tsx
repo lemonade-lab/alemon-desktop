@@ -125,6 +125,28 @@ export default () => {
               <ul className="p-1 text-sm">
                 <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
                   <div></div>
+                  <div
+                    className="ml-2"
+                    onClick={() => {
+                      window.app.botRun()
+                    }}
+                  >
+                    BOT启动
+                  </div>
+                </li>
+                <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
+                  <div></div>
+                  <div
+                    className="ml-2"
+                    onClick={() => {
+                      window.app.botRun()
+                    }}
+                  >
+                    BOT关闭
+                  </div>
+                </li>
+                <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
+                  <div></div>
                   <div className="ml-2">编辑用户</div>
                 </li>
                 <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
