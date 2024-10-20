@@ -30,9 +30,9 @@ export const botRun = () => {
     return // 直接返回，避免重复执行
   }
 
-  const MYJS = join(templatePath, 'node_modules', 'lvyjs', 'bin', 'index.js')
+  const MyJS = join(templatePath, 'bin', 'lvyjs.mjs')
 
-  child = fork(MYJS, ['dev', '--alemonjs', '--login', 'gui'], {
+  child = fork(MyJS, ['dev', '--alemonjs', '--login', 'gui'], {
     execArgv: [],
     cwd: templatePath,
     stdio: 'pipe'

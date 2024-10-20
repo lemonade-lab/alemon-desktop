@@ -95,8 +95,8 @@ module.exports = {
       filter: ['*']
     },
     {
-      from: 'resources/template/yarn',
-      to: 'template/yarn',
+      from: 'resources/template/bin',
+      to: 'template/bin',
       filter: ['*']
     }
   ]

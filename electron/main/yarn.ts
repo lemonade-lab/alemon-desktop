@@ -9,8 +9,8 @@ import { templatePath } from './static'
  * @returns 子进程实例
  */
 export const yarnInstall = () => {
-  const yarnJS = join(templatePath, 'yarn', 'yarn.cjs')
-  const child = fork(yarnJS, ['install'], {
+  const MyJS = join(templatePath, 'bin', 'yarn.cjs')
+  const child = fork(MyJS, ['install'], {
     execArgv: [],
     // 运行目录
     cwd: templatePath,
@@ -37,8 +37,8 @@ export const yarnInstall = () => {
  * @returns 子进程实例
  */
 export const yarnAdd = (packageName: string) => {
-  const yarnJS = join(templatePath, 'yarn', 'yarn.cjs')
-  const child = fork(yarnJS, ['add', packageName], {
+  const MyJS = join(templatePath, 'bin', 'yarn.cjs')
+  const child = fork(MyJS, ['add', packageName], {
     execArgv: [],
     // 运行目录
     cwd: templatePath,
