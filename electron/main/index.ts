@@ -1,9 +1,9 @@
 import './env'
-import { app, BrowserWindow, shell, ipcMain, screen, type Tray } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, screen } from 'electron'
 import { join } from 'node:path'
 import urlHandler from 'url'
 
-// Get the screen size
+// 获取屏幕尺寸
 const getScreenSize = (): Electron.Size => {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
   return { width, height }
@@ -11,7 +11,6 @@ const getScreenSize = (): Electron.Size => {
 
 let win: BrowserWindow | null = null
 let loginWin: BrowserWindow | null = null
-let appTray: Tray | null
 
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
@@ -65,6 +64,43 @@ const createWindow = () => {
 
   //
 }
+
+// 当应用程序准备就绪时，创建主窗口
+app.whenReady().then(() => {
+  createWindow()
+
+  // 设置应用的用户模型 ID
+  app.setAppUserModelId('com.alemonjs.desktop') // 替换为你的应用标识
+
+  // 将安全恢复状态设置为 true
+  // 这在 macOS 上是自动处理的
+})
+
+// 当所有窗口都关闭后，退出应用程序
+app.on('window-all-closed', () => {
+  win = null
+  if (process.platform !== 'darwin') app.quit()
+})
+
+// 防止应用程序的多个实例
+app.on('second-instance', () => {
+  if (win) {
+    if (!win.isVisible()) win.show()
+    // 如果用户尝试打开另一个窗口，则聚焦于主窗口
+    if (win.isMinimized()) win.restore()
+    win.focus()
+  }
+})
+
+// 如果用户单击应用程序的停靠栏图标，则恢复主窗口
+app.on('activate', () => {
+  const allWindows = BrowserWindow.getAllWindows()
+  if (allWindows.length) {
+    allWindows[0].focus()
+  } else {
+    createWindow()
+  }
+})
 
 /**
  *
@@ -120,42 +156,13 @@ const createLoginWindow = () => {
     return { action: 'deny' }
   })
 
-  // when the login window closed, set loginWin null
+  // 当登录窗口关闭时，设置loginWin null
   loginWin.on('closed', () => {
     loginWin = null
   })
 }
 
-// When app is ready, create the main window
-app.whenReady().then(createWindow)
-
-// When all windows are closed, quit the application
-app.on('window-all-closed', () => {
-  win = null
-  if (process.platform !== 'darwin') app.quit()
-})
-
-// Prevent multiple instances of the app
-app.on('second-instance', () => {
-  if (win) {
-    if (!win.isVisible()) win.show()
-    // Focus on the main window if the user tried to open another
-    if (win.isMinimized()) win.restore()
-    win.focus()
-  }
-})
-
-// Restore the main window if the user clicks on the app's dock icon
-app.on('activate', () => {
-  const allWindows = BrowserWindow.getAllWindows()
-  if (allWindows.length) {
-    allWindows[0].focus()
-  } else {
-    createWindow()
-  }
-})
-
-// open login window
+// 打开登录窗口
 ipcMain.on('open-login', () => {
   createLoginWindow()
 })

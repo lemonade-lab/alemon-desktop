@@ -10,7 +10,7 @@
     "postinstall": "cd ./out && yarn add alemonjs@latest",
     "dev": "vite",
     "dev-win": "chcp 65001 && vite",
-    "build": "tsc && vite build && npx electron .\\electron-main.js && electron-builder --config electron-builder.cjs",
+    "build": "tsc && vite build && electron-builder --config electron-builder.cjs",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
     "format": "prettier --write .",
@@ -71,7 +71,6 @@
     "vite-plugin-electron": "^0.28.4",
     "vite-plugin-electron-renderer": "^0.14.5"
   },
-  "packageManager": "yarn@1.19.1",
   "debug": {
     "env": {
       "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"

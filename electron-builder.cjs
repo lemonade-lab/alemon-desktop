@@ -6,7 +6,7 @@
  */
 module.exports = {
   appId: 'com.alemonjs.desktop',
-  productName: 'Alemon', // 你的应用程序名称
+  productName: 'AlemonJS', // 你的应用程序名称
   asar: true,
   electronDownload: {
     mirror: 'https://npmmirror.com/mirrors/electron/' // electron下载地址
@@ -14,6 +14,9 @@ module.exports = {
   directories: {
     output: 'release/${version}'
   },
+  // dist-electron --  dscltop
+  // disc   -- web
+  // npm  -- yarn
   files: ['dist-electron', 'dist', 'yarn'],
   mac: {
     artifactName: '${productName}_${version}.${ext}',
@@ -21,7 +24,8 @@ module.exports = {
   },
   win: {
     icon: './public/favicon.ico',
-    // compression:'store', //压缩 快速打包 测试用
+    // 压缩 快速打包 测试用
+    // compression:'store',
     target: [
       {
         target: 'nsis',
@@ -58,16 +62,19 @@ module.exports = {
     // license: './LICENSE.txt', // 许可证 需要gb2312格式
     include: './alemon.nsh'
   },
+  // 额外的资源文件
+  // 用于放置 alemonjs 机器人模版
+  // 先对资源进行压缩
   extraResources: [
-    // 额外的资源文件
     {
-      from: 'out', // 资源文件的来源
+      from: 'template', // 资源文件的来源
       to: '.', // 资源文件的目标位置 会在打包后的resources目录下
       filter: ['**/*', '!.yarn{,/**/*}', '!yarn.lock', '!root']
     }
   ],
+  // 更新地址
   publish: {
     provider: 'generic',
-    url: 'http://127.0.0.1:8080/'
+    url: 'https://alemonjs.com/api/app'
   }
 }
