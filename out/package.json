@@ -1,8 +1,0 @@
-{
-  "name": "alemonb",
-  "version": "1.0.0",
-  "license": "MIT",
-  "devDependencies": {
-    "alemonjs": "^2.0.0-rc.42"
-  }
-}

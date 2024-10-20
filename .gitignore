@@ -8,14 +8,6 @@ xiuxian-goods
 # Node dependencies
 node_modules
 
-# alemon dev/config
-.data
-/data
-/public/defset
-/temp
-/config/config
-/resources
-
 # config
 alemon.toml
 
@@ -67,13 +59,3 @@ yarn.lock
 /playwright/.cache/
 
 /rust
-
-
-# app
-application
-out/**/*
-!out/.npmrc
-!out/package.json
-!out/plugins/.gitignore
-
-!out/root

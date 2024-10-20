@@ -17,13 +17,13 @@ module.exports = {
   // dist-electron --  dscltop
   // disc   -- web
   // npm  -- yarn
-  files: ['dist-electron', 'dist', 'yarn'],
+  files: ['dist-electron', 'dist'],
   mac: {
     artifactName: '${productName}_${version}.${ext}',
-    target: ['dmg', 'zip']
+    target: ['dmg']
   },
   win: {
-    icon: './public/favicon.ico',
+    icon: './assets/favicon.ico',
     // 压缩 快速打包 测试用
     // compression:'store',
     target: [
@@ -45,12 +45,12 @@ module.exports = {
     deleteAppDataOnUninstall: false, // 是否删除安装后的数据
     allowElevation: true, // 是否允许提升权限
     runAfterFinish: true, // 安装完成后是否运行
-    installerIcon: './public/favicon.ico', // 安装图标
-    uninstallerIcon: './public/favicon.ico', // 卸载图标
-    installerHeader: './public/favicon.ico', // 安装的头部(右边的图标)
-    installerHeaderIcon: './public/favicon.ico', // 安装时头部图标
-    installerSidebar: './build/installerSidebar.bmp', // 安装包安装侧边图片，要求164 × 314 像素
-    uninstallerSidebar: './build/installerSidebar.bmp', // 安装包卸载侧边图片，要求164 × 314 像素
+    installerIcon: './assets/favicon.ico', // 安装图标
+    uninstallerIcon: './assets/favicon.ico', // 卸载图标
+    installerHeader: './assets/favicon.ico', // 安装的头部(右边的图标)
+    installerHeaderIcon: './assets/favicon.ico', // 安装时头部图标
+    installerSidebar: './assets/installerSidebar.bmp', // 安装包安装侧边图片，要求164 × 314 像素
+    uninstallerSidebar: './assets/installerSidebar.bmp', // 安装包卸载侧边图片，要求164 × 314 像素
     createDesktopShortcut: true, // 是否创建桌面图标
     createStartMenuShortcut: true, // 是否创建开始菜单图标
     shortcutName: '${productName}', // 图标名称
@@ -58,23 +58,39 @@ module.exports = {
     // installerLanguages: ['zh_CN', 'en_US'], //安装包语言
     installerLanguages: ['zh_CN'], //安装包语言只要中文
     // https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c?redirectedfrom=MSDN
-    language: 0x0804, //设置安装包 属性 详细信息 语言 为 中文简体
+    language: 0x0804 //设置安装包 属性 详细信息 语言 为 中文简体
     // license: './LICENSE.txt', // 许可证 需要gb2312格式
-    include: './alemon.nsh'
+    // include: './alemon.nsh'
   },
   // 额外的资源文件
-  // 用于放置 alemonjs 机器人模版
-  // 先对资源进行压缩
+  // 用于放置模版
+  // 在打包后的resources目录下
   extraResources: [
     {
-      from: 'template', // 资源文件的来源
-      to: '.', // 资源文件的目标位置 会在打包后的resources目录下
-      filter: ['**/*', '!.yarn{,/**/*}', '!yarn.lock', '!root']
+      from: 'resources/template',
+      to: 'template',
+      filter: ['*', '!node_modules', '!.yarn{,/**/*}', '!yarn.lock']
+    },
+    {
+      from: 'resources/template/src',
+      to: 'template/src',
+      filter: ['*']
+    },
+    {
+      from: 'resources/template/src/apps/hello',
+      to: 'template/src/apps/hello',
+      filter: ['*']
+    },
+    {
+      from: 'resources/template/yarn',
+      to: 'template/yarn',
+      filter: ['*']
     }
   ],
   // 更新地址
   publish: {
     provider: 'generic',
+    // 把
     url: 'https://alemonjs.com/api/app'
   }
 }

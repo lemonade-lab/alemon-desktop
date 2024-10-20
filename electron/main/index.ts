@@ -1,5 +1,6 @@
 import './env'
 import { app, BrowserWindow, shell, ipcMain, screen } from 'electron'
+import { exec } from 'node:child_process'
 import { join } from 'node:path'
 import urlHandler from 'url'
 
@@ -65,15 +66,33 @@ const createWindow = () => {
   //
 }
 
+const yarnInstall = () => {
+  const resourcesPath = join(app.getAppPath(), 'resources')
+
+  // 加载依赖
+  exec('node yarn/yarn.cjs', { cwd: join(resourcesPath, 'template') }, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`)
+      return
+    }
+    if (stderr) {
+      console.error(`Stderr: ${stderr}`)
+      return
+    }
+    console.log(`Output: ${stdout}`)
+  })
+}
+
+ipcMain.on('yarn-install', () => {
+  yarnInstall()
+})
+
 // 当应用程序准备就绪时，创建主窗口
 app.whenReady().then(() => {
   createWindow()
-
   // 设置应用的用户模型 ID
   app.setAppUserModelId('com.alemonjs.desktop') // 替换为你的应用标识
-
-  // 将安全恢复状态设置为 true
-  // 这在 macOS 上是自动处理的
+  yarnInstall()
 })
 
 // 当所有窗口都关闭后，退出应用程序

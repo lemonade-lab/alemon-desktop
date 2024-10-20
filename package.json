@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "cd ./out && yarn add alemonjs@latest",
     "dev": "vite",
     "dev-win": "chcp 65001 && vite",
     "build": "tsc && vite build && electron-builder --config electron-builder.cjs",

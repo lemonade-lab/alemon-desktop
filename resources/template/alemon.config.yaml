@@ -1,0 +1,6 @@
+pm2:
+  name: 'gui'
+  script: ''
+
+gui:
+  port: 9601
