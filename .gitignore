@@ -58,4 +58,6 @@ yarn.lock
 /playwright-report/
 /playwright/.cache/
 
+/icons
+
 /rust

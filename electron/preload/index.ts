@@ -5,5 +5,6 @@ contextBridge.exposeInMainWorld('app', {
   yarnInstall: () => ipcRenderer.invoke('yarn-install'),
   yarnAdd: (data: string) => ipcRenderer.invoke('yarn-add', data),
   botRun: () => ipcRenderer.invoke('bot-run'),
-  borClose: () => ipcRenderer.invoke('bot-close')
+  botClose: () => ipcRenderer.invoke('bot-close'),
+  botIsRunning: () => ipcRenderer.invoke('bot-is-running')
 })

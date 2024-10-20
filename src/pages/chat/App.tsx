@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MenuMoreIcon, SendIcon } from '../Icons'
 import moment from 'moment'
+import img_logo from '@src/assets/logo.jpg'
 /**
  * 聊天测试窗口
  */
@@ -23,9 +24,9 @@ export default () => {
     close: '已断开'
   }
   const URI = 'ws://localhost:9601'
-  const BOT_URI =
-    ' https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80'
-  const USER_URI = 'https://q1.qlogo.cn/g?b=qq&s=0&nk=1715713618'
+  const BOT_URI = img_logo
+
+  const USER_URI = 'https://q1.qlogo.cn/g?b=qq&s=0&nk=1715713638'
 
   /**
    * 刷新状态
@@ -125,28 +126,6 @@ export default () => {
               <ul className="p-1 text-sm">
                 <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
                   <div></div>
-                  <div
-                    className="ml-2"
-                    onClick={() => {
-                      window.app.botRun()
-                    }}
-                  >
-                    BOT启动
-                  </div>
-                </li>
-                <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
-                  <div></div>
-                  <div
-                    className="ml-2"
-                    onClick={() => {
-                      window.app.botRun()
-                    }}
-                  >
-                    BOT关闭
-                  </div>
-                </li>
-                <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
-                  <div></div>
                   <div className="ml-2">编辑用户</div>
                 </li>
                 <li className="px-2 hover:bg-gray-50 flex  items-center rounded-md cursor-pointer ">
@@ -162,14 +141,16 @@ export default () => {
         {message.map((item, index) => (
           <div key={index} className="flex  gap-4 bg-opacity-70 mr-auto ">
             <img
-              className="size-[3rem] rounded-full"
+              className="size-[3rem] rounded-full border"
               src={item.bot ? BOT_URI : USER_URI}
               // src=""
               alt="Avatar"
             />
             <div className="rounded-md relative p-1 m-auto bg-slate-200">
               <span>{item.value}</span>
-              <span className="absolute text-[0.5rem] whitespace-nowrap">{item.createAt}</span>
+              <span className="absolute bottom-0 text-[0.5rem] whitespace-nowrap">
+                {item.createAt}
+              </span>
             </div>
           </div>
         ))}

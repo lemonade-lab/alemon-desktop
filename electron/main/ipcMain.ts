@@ -4,7 +4,7 @@ import { templatePath } from './static'
 import { join } from 'path'
 import { existsSync } from 'fs'
 import { yarnAdd, yarnInstall } from './yarn'
-import { botClose, botRun } from './bot'
+import { botClose, botRun, isBotRunning } from './bot'
 /**
  * 全局可用的
  * 通讯信息
@@ -40,4 +40,8 @@ ipcMain.handle('bot-run', () => {
 
 ipcMain.handle('bot-close', () => {
   botClose()
+})
+
+ipcMain.handle('bot-is-running', () => {
+  return isBotRunning()
 })

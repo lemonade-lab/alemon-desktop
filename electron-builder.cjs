@@ -17,13 +17,20 @@ module.exports = {
   // dist-electron --  dscltop
   // disc   -- web
   // npm  -- yarn
-  files: ['dist-electron', 'dist'],
+  files: ['dist-electron', 'dist', 'icons/**/*'],
   mac: {
+    icon: './icons/icon.icns',
     artifactName: '${productName}_${version}.${ext}',
-    target: ['dmg']
+    target: ['dmg'],
+    // 更新地址
+    publish: {
+      provider: 'generic',
+      // 把
+      url: 'https://alemonjs.com/api/app/mac'
+    }
   },
   win: {
-    icon: './assets/favicon.ico',
+    icon: './icons/icon.ico',
     // 压缩 快速打包 测试用
     // compression:'store',
     target: [
@@ -36,7 +43,13 @@ module.exports = {
         arch: ['x64']
       }
     ],
-    artifactName: '${productName}_${version}.${ext}'
+    artifactName: '${productName}_${version}.${ext}',
+    // 更新地址
+    publish: {
+      provider: 'generic',
+      // 把
+      url: 'https://alemonjs.com/api/app/win'
+    }
   },
   nsis: {
     oneClick: false, // 是否一键安装
@@ -45,10 +58,10 @@ module.exports = {
     deleteAppDataOnUninstall: false, // 是否删除安装后的数据
     allowElevation: true, // 是否允许提升权限
     runAfterFinish: true, // 安装完成后是否运行
-    installerIcon: './assets/favicon.ico', // 安装图标
-    uninstallerIcon: './assets/favicon.ico', // 卸载图标
-    installerHeader: './assets/favicon.ico', // 安装的头部(右边的图标)
-    installerHeaderIcon: './assets/favicon.ico', // 安装时头部图标
+    installerIcon: './icons/icon.ico', // 安装图标
+    uninstallerIcon: './icons/icon.ico', // 卸载图标
+    installerHeader: './icons/icon.ico', // 安装的头部(右边的图标)
+    installerHeaderIcon: './icons/icon.ico', // 安装时头部图标
     installerSidebar: './assets/installerSidebar.bmp', // 安装包安装侧边图片，要求164 × 314 像素
     uninstallerSidebar: './assets/installerSidebar.bmp', // 安装包卸载侧边图片，要求164 × 314 像素
     createDesktopShortcut: true, // 是否创建桌面图标
@@ -86,11 +99,5 @@ module.exports = {
       to: 'template/yarn',
       filter: ['*']
     }
-  ],
-  // 更新地址
-  publish: {
-    provider: 'generic',
-    // 把
-    url: 'https://alemonjs.com/api/app'
-  }
+  ]
 }

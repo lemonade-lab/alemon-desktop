@@ -4,6 +4,7 @@ import About from '@src/pages/about/App'
 import Chat from '@src/pages/chat/App'
 import Docs from '@src/pages/docs/App'
 import Setting from '@src/pages/settings/App'
+import img_logo from '@src/assets/logo.jpg'
 import {
   AboutIcon,
   AppsIcon,
@@ -43,8 +44,8 @@ export default () => {
         <section className="h-6" />
         <section className="flex justify-center py-1 relative cursor-pointer">
           <img
-            className="w-[3rem] rounded-full"
-            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+            className="w-[3rem] rounded-full border-2 border-slate-500 my-1 bg-white"
+            src={img_logo}
             alt="Avatar"
           />
         </section>

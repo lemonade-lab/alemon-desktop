@@ -6,8 +6,23 @@ import { templatePath } from './static'
 let child: ChildProcess | null = null // 存储子进程实例
 
 /**
- * yarn 安装依赖
- * @param dir 路径
+ * 关闭子进程
+ */
+export const botClose = () => {
+  if (!child) {
+    logger.warn('No bot is running.') // 如果没有进程在运行，记录警告
+    return // 直接返回
+  }
+  child.kill() // 关闭子进程
+  logger.info('Bot process has been closed.')
+  child = null // 清空子进程实例
+}
+
+process.on('exit', () => {
+  botClose()
+})
+
+/**
  */
 export const botRun = () => {
   if (child) {
@@ -16,6 +31,7 @@ export const botRun = () => {
   }
 
   const MYJS = join(templatePath, 'node_modules', 'lvyjs', 'bin', 'index.js')
+
   child = fork(MYJS, ['dev', '--alemonjs', '--login', 'gui'], {
     execArgv: [],
     cwd: templatePath,
@@ -35,19 +51,14 @@ export const botRun = () => {
   // 监听子进程退出
   child.on('exit', code => {
     logger.info(`Child process exited with code ${code}`)
-    child = null // 清空子进程实例
+    botClose()
   })
 }
 
 /**
- * 关闭子进程
+ * 判断子进程是否正在运行
+ * @returns {boolean} 如果进程正在运行则返回 true，否则返回 false
  */
-export const botClose = () => {
-  if (!child) {
-    logger.warn('No bot is running.') // 如果没有进程在运行，记录警告
-    return // 直接返回
-  }
-  child.kill() // 关闭子进程
-  child = null // 清空子进程实例
-  logger.info('Bot process has been closed.')
+export const isBotRunning = () => {
+  return child !== null // 返回进程状态
 }

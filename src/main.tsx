@@ -22,6 +22,7 @@ declare global {
       yarnAdd: (name: string) => Promise<void>
       botRun: () => Promise<void>
       botClose: () => Promise<void>
+      botIsRunning: () => Promise<boolean>
     }
   }
 }
