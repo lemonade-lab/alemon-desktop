@@ -1,8 +1,8 @@
 import './env'
 import { app, BrowserWindow, shell, ipcMain, screen } from 'electron'
-import { exec } from 'node:child_process'
 import { join } from 'node:path'
 import urlHandler from 'url'
+import './ipcMain'
 
 // 获取屏幕尺寸
 const getScreenSize = (): Electron.Size => {
@@ -38,10 +38,10 @@ const createWindow = () => {
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
     // 是否可以最小化窗口。默认为true。
     webPreferences: {
-      preload,
-      nodeIntegration: true,
-      contextIsolation: false,
-      devTools: !app.isPackaged
+      preload
+      // nodeIntegration: true,
+      // contextIsolation: false,
+      // devTools: !app.isPackaged
     }
   })
 
@@ -66,33 +66,12 @@ const createWindow = () => {
   //
 }
 
-const yarnInstall = () => {
-  const resourcesPath = join(app.getAppPath(), 'resources')
-
-  // 加载依赖
-  exec('node yarn/yarn.cjs', { cwd: join(resourcesPath, 'template') }, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error: ${error.message}`)
-      return
-    }
-    if (stderr) {
-      console.error(`Stderr: ${stderr}`)
-      return
-    }
-    console.log(`Output: ${stdout}`)
-  })
-}
-
-ipcMain.on('yarn-install', () => {
-  yarnInstall()
-})
-
 // 当应用程序准备就绪时，创建主窗口
 app.whenReady().then(() => {
   createWindow()
   // 设置应用的用户模型 ID
-  app.setAppUserModelId('com.alemonjs.desktop') // 替换为你的应用标识
-  yarnInstall()
+  // 替换为你的应用标识
+  app.setAppUserModelId('com.alemonjs.desktop')
 })
 
 // 当所有窗口都关闭后，退出应用程序
@@ -155,8 +134,8 @@ const createLoginWindow = () => {
   // Load the HTML(URL when dev) of the app.
   if (url) {
     loginWin.loadURL(`${url}/#/login`)
-    // Open devTool if the app is not packaged
-    // win.webContents.openDevTools();
+    // Open 如果应用未打包，请打开 devTool
+    win.webContents.openDevTools()
   } else {
     // loginWin.loadFile(`${indexHtml}/#/login`);
     loginWin.loadURL(
@@ -169,7 +148,7 @@ const createLoginWindow = () => {
     )
   }
 
-  // Make all links open with the browser, not with the application
+  //  让所有链接都通过浏览器打开，而不是通过应用程序打开
   loginWin.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
